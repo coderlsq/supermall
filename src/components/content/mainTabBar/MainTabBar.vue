@@ -39,6 +39,10 @@
 
 <style scoped>
   .mainTab{
+    position: fixed;
+    top: calc(100vh - 49px);
+    left: 0px;
+    right: 0px;
     height: 49px;
   }
 </style>

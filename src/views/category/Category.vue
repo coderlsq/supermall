@@ -118,11 +118,28 @@
       }
     },
     mounted() {
-      console.log(document.querySelector(".wrapper"));
-      this.scroll = new BScroll(document.querySelector(".wrapper"),{
+      //默认情况下BScroll是不可以监听滚动的位置的
+      //probeType：监听滚动位置
+      //0和1是不监听实时的位置
+      //2是手指（鼠标）在上面才会监听
+      //3是只要滚动就监听
 
+      //默认情况下BScroll是不会监听上拉加载的
+      //pullType默认为false
+      this.scroll = new BScroll(document.querySelector(".wrapper"), {
+        // probeType: 3,
+        // pullUpLoad: true,
       })
-    }
+
+      // this.scroll.on('scroll', (position) => {
+      //   // console.log(position);
+      // })
+      //
+      // this.scroll.on('pullingUp', () => {
+      //   console.log('上拉加载更多');
+      //   // this.scroll.finishPullUp()
+      // })
+    },
   }
 </script>
 

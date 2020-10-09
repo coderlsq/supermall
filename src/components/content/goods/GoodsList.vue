@@ -1,5 +1,5 @@
 <template>
-  <div class="goodList">
+  <div class="goodList" v-if="goods">
     <goods-list-item v-for="item in goods" :good-item="item"></goods-list-item>
   </div>
 </template>
@@ -10,15 +10,14 @@
     name: "GoodsList",
     props: {
       goods: {
-        type: Array,
         default() {
-          return []
+          return null
         }
       }
     },
     components: {
       GoodsListItem
-    }
+    },
   }
 </script>
 

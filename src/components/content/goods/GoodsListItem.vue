@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodItem.show.img" alt="">
+  <div class="goods-item" @click="itemClick">
+    <img :src="showImg" alt="" @load="imgLoad">
     <div class="goods-info">
       <p>{{goodItem.title}}</p>
       <span class="price">{{goodItem.price}}</span>
@@ -19,6 +19,29 @@
           return null
         }
       },
+    },
+    methods: {
+      imgLoad() {
+        //第一种方式：利用路由检测应该向那里发送图片完成的事件
+        //这种方式是简单易懂，但是降低了复用性
+        // if(this.$route.path.indexOf('/home')){
+        //   this.$bus.$emit("homeImgLoad")
+        // }else if (this.$route.path.indexOf('/detail')) {
+        //   this.$bus.$emit("detailImgLoad")
+        // }
+        // 第二种方式：不管三七二十一往外传，但是在接受处设置，当前页面不再是活跃状态时就将处理
+        // 这个响应的事件关闭（从而引入了’混入‘）
+        this.$bus.$emit("imgLoad")
+      },
+
+      itemClick() {
+        this.$router.push("/detail/" + this.goodItem.iid)
+      }
+    },
+    computed: {
+      showImg() {
+        return this.goodItem.image || this.goodItem.show.img
+      }
     },
   }
 </script>
